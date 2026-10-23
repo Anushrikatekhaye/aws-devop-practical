@@ -1,0 +1,12 @@
+aws_region   = "ap-south-1"
+project_name = "devops-practical"
+environment  = "dev"
+
+# Cost-saving defaults for a demo; flip for a production-like run.
+single_nat_gateway     = true
+db_multi_az            = true
+db_skip_final_snapshot = true
+
+# Leave empty until you own a domain (self-signed cert is used meanwhile).
+domain_name     = ""
+route53_zone_id = ""
