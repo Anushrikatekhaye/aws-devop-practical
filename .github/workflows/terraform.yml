@@ -1,11 +1,9 @@
 name: Terraform CI/CD
 
+# MANUAL ONLY: pushing code or opening a pull request does NOT trigger this
+# workflow. It runs only when someone clicks "Run workflow" in the Actions tab.
+# Not deployed: no AWS account was used for this submission.
 on:
-  pull_request:
-    paths: ["terraform/**", "app/**", ".github/workflows/terraform.yml"]
-  push:
-    branches: [main]
-    paths: ["terraform/**", "app/**", ".github/workflows/terraform.yml"]
   workflow_dispatch:
     inputs:
       destroy:
@@ -92,7 +90,7 @@ jobs:
   apply:
     name: Apply
     needs: plan
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && !inputs.destroy
+    if: github.ref == 'refs/heads/main' && !inputs.destroy
     runs-on: ubuntu-latest
     environment: production # configure required reviewers for a manual approval gate
     steps:
